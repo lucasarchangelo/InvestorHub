@@ -19,6 +19,9 @@ const TokenPriceDisplay: React.FC<TokenPriceDisplayProps> = ({
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    // TODO: remove this
+    console.log(feeTierUsed);
+
     useEffect(() => {
         const fetchPrice = async () => {
             setLoading(true);

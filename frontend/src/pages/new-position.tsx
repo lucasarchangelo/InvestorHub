@@ -166,6 +166,9 @@ const NewPosition: React.FC = () => {
     const [isAwaitingSignature, setIsAwaitingSignature] = useState(false);
     const [isConfirming, setIsConfirming] = useState(false);
 
+    // TODO: remove this
+    console.log(loadingWalletBalances, walletBalanceError);
+
     const validateConversion = (token0Symbol: string, token1Symbol: string, token0PriceInToken1: number, token1PriceInToken0: number) => {
         const crossCheck = token0PriceInToken1 * token1PriceInToken0;
         const tolerance = 0.01;
@@ -596,7 +599,7 @@ const NewPosition: React.FC = () => {
             });
 
             // 3. Determinar tokens (mantido igual)
-            const isProvidingToken0 = validToken.symbol.toUpperCase() === pool.token0.symbol.toUpperCase();
+            // const isProvidingToken0 = validToken.symbol.toUpperCase() === pool.token0.symbol.toUpperCase();
             const tokenIn = tokenAddressInput;
             const tokenOut = tokenAddressInput === pool.token0.address ? pool.token1.address : pool.token0.address;
 
@@ -604,17 +607,17 @@ const NewPosition: React.FC = () => {
             const amountIn = parseFloat(investmentAmount);
             const parsedAmountIn = parseUnits(
                 amountIn.toString(),
-                tokenIn.decimals || 18
+                18 // TODO: get decimals from token
             );
             const amount0In = parseFloat(amount0);
             const parsedAmount0 = parseUnits(
                 amount0In.toString(),
-                amount0.decimals || 18
+                18 // TODO: get decimals from token
             )
             const amount1In = parseFloat(amount1);
             const parsedAmount1 = parseUnits(
                 amount1In.toString(),
-                amount1.decimals || 18
+                18 // TODO: get decimals from token
             )
 
             // 5. Construir payload conforme ABI
