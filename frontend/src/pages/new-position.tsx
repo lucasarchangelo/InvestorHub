@@ -170,6 +170,7 @@ const NewPosition: React.FC = () => {
     console.log('loadingWalletBalances', loadingWalletBalances);
     console.log('walletBalanceError', walletBalanceError);
 
+
     const validateConversion = (token0Symbol: string, token1Symbol: string, token0PriceInToken1: number, token1PriceInToken0: number) => {
         const crossCheck = token0PriceInToken1 * token1PriceInToken0;
         const tolerance = 0.01;
@@ -611,6 +612,7 @@ const NewPosition: React.FC = () => {
             const amountIn = parseFloat(investmentAmount);
             const parsedAmountIn = parseUnits(
                 amountIn.toString(),
+                
                 validToken.decimals || 18
             );
             // const amount0In = parseFloat(amount0);
@@ -625,6 +627,7 @@ const NewPosition: React.FC = () => {
             // );
 
             // 5. Construir payload
+
             const dexPayload = {
                 path: solidityPacked(
                     ['address', 'uint24', 'address'],
