@@ -23,6 +23,8 @@ export async function up(
     rpcUrl: 'https://eth.llamarpc.com',
     graphqlUrl: 'https://gateway.thegraph.com/api/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV',
     currency: 'ETH',
+    positionManagerAddress: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
+    factoryAddress: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
     isActive: true,
   });
 
@@ -32,15 +34,19 @@ export async function up(
     rpcUrl: 'https://mainnet.base.org',
     graphqlUrl: 'https://gateway.thegraph.com/api/subgraphs/id/HMuAwufqZ1YCRmzL2SfHTVkzZovC9VL2UAKhjvRqKiR1',
     currency: 'ETH',
+    positionManagerAddress: '0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1',
+    factoryAddress: '0x33128a8fC17869897dcE68Ed026d694621f6FDfD',
     isActive: true,
   });
 
   const sepoliaNetwork = await networkConfigRepository.create({
     name: 'Sepolia',
     chainId: 11155111,
-    rpcUrl: 'https://eth-sepolia.g.alchemy.com/v2/demo',
+    rpcUrl: 'https://1rpc.io/sepolia',
     graphqlUrl: 'https://gateway.thegraph.com/api/subgraphs/id/EDJCBpDBGBajTP1x3qLGLg3ZaVR5Q2TkNxyNHdCuryex',
     currency: 'ETH',
+    positionManagerAddress: '0x1238536071E1c677A632429e3655c799b22cDA52',
+    factoryAddress: '0x0227628f3F023bb0B980b67D528571c95c6DaC1c',
     isActive: true,
   });
 
@@ -50,6 +56,8 @@ export async function up(
     rpcUrl: 'https://sepolia.base.org',
     graphqlUrl: 'https://gateway.thegraph.com/api/subgraphs/id/ByS2RA4Qfpwrtu9vJC5VQqBN4jQxbM6hugm5VNNspstj',
     currency: 'ETH',
+    positionManagerAddress: '0x27F971cb582BF9E50F397e4d29a5C7A34f11faA2',
+    factoryAddress: '0x4752ba5DBc23f44D87826276BF6Fd6b1C372aD24',
     isActive: true,
   });
 
@@ -165,30 +173,35 @@ export async function up(
         symbol: 'WETH',
         address: tokenAddresses.sepolia.weth,
         network: sepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Tether USD',
         symbol: 'USDT',
         address: tokenAddresses.sepolia.usdt,
         network: sepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'USD Coin',
         symbol: 'USDC',
         address: tokenAddresses.sepolia.usdc,
         network: sepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Wrapped Bitcoin',
         symbol: 'WBTC',
         address: tokenAddresses.sepolia.wbtc,
         network: sepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Chainlink',
         symbol: 'LINK',
         address: tokenAddresses.sepolia.link,
         network: sepoliaNetwork._id,
+        whitelist: true,
       },
     ]);
   }
@@ -201,30 +214,35 @@ export async function up(
         symbol: 'WETH',
         address: tokenAddresses.baseSepolia.weth,
         network: baseSepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Tether USD',
         symbol: 'USDT',
         address: tokenAddresses.baseSepolia.usdt,
         network: baseSepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'USD Coin',
         symbol: 'USDC',
         address: tokenAddresses.baseSepolia.usdc,
         network: baseSepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Wrapped Bitcoin',
         symbol: 'WBTC',
         address: tokenAddresses.baseSepolia.wbtc,
         network: baseSepoliaNetwork._id,
+        whitelist: true,
       },
       {
         name: 'Chainlink',
         symbol: 'LINK',
         address: tokenAddresses.baseSepolia.link,
         network: baseSepoliaNetwork._id,
+        whitelist: true,
       },
     ]);
   }

@@ -34,7 +34,6 @@ contract StartSwapFacet {
 
     ///@notice constant variable to store MAGIC NUMBERS
     uint8 private constant ZERO = 0;
-    uint8 constant TWO = 2;
 
     /*///////////////////////////////////
                     Events
@@ -47,10 +46,6 @@ contract StartSwapFacet {
     error StartSwapFacet_CallerIsNotDiamond(address actualContext, address diamondContext);
     ///@notice error emitted when the liquidAmount is zero
     error StartSwapFacet_InvalidAmountToSwap(uint256 amountIn);
-    ///@notice error emitted when the input array is to big
-    error StartSwapFacet_ArrayBiggerThanTheAllowedSize(uint256 arraySize);
-    ///@notice error emitted when the staking payload sent is different than the validated struct
-    error StartSwapFacet_InvalidStakePayload(bytes32 hashOfEncodedPayload, bytes32 hashOfStructArgs);
     ///@notice error emitted when the first token of a swap is the address(0)
     error StartSwapFacet_InvalidToken0(address tokenIn);
     ///@notice error emitted when the last token != than the token to stake
@@ -106,10 +101,10 @@ contract StartSwapFacet {
         )= LibUniswapV3._handleSwap(
             i_router,
             _payload.path,
-            token0, 
+            token0,
             _payload.deadline,
-            _payload.amountInForInputToken, //the input is only the amount necessary to perform the swap and receive the token1 amount to stake
-            _stakePayload.amount0Desired
+            _payload.amountInForInputToken, ///@dev the input is only the amount necessary to perform the swap and receive the token1 amount to stake
+            _stakePayload.amount1Desired ///@dev User has Token0 and is Swapping for Token1. So, the minAmountOut is the amount1Desired to invest.
         );
 
         _stakePayload = normalizeStakePayload(_stakePayload);
